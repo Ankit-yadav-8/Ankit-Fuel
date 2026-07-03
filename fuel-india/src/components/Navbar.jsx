@@ -4,7 +4,6 @@ import { Link, useLocation } from 'react-router-dom';
 const navLinks = [
   { label: 'Home', path: '/' },
   { label: 'Find Stations', path: '/petrol' },
-  { label: 'Plan Route', path: '/route-planner' },
   { label: 'EV', path: '/ev' },
   { label: 'Petrol & Diesel', path: '/petrol' },
   { label: 'CNG', path: '/cng' },
@@ -51,6 +50,10 @@ export default function Navbar() {
 
           {/* Action Area */}
           <div className="navbar__actions">
+            <Link to="/route-planner" className="btn btn--outline" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 20l-5.447-2.724A2 2 0 013 15.487V5.736A2 2 0 014.106 4.11l4.447-2.224a2 2 0 011.794 0L15 4.5l4.447-2.224A2 2 0 0122 4.062v10.453a2 2 0 01-1.106 1.789L15 19.5l-4.66-2.33a2 2 0 00-1.788 0l-5.447 2.724" /><path d="M9 2v17" /><path d="M15 5v15" /></svg>
+              Plan Route
+            </Link>
             <Link to="/demo" className="btn btn--primary">Book a Demo</Link>
             
             <button className="navbar__burger" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Menu">
@@ -74,7 +77,8 @@ export default function Navbar() {
                 <Link to={link.path} className="mobile-menu__title">{link.label}</Link>
               </div>
             ))}
-            <div className="mobile-menu__cta">
+            <div className="mobile-menu__cta" style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '24px' }}>
+              <Link to="/route-planner" className="btn btn--outline" style={{ width: '100%' }}>Plan Route</Link>
               <Link to="/demo" className="btn btn--primary" style={{ width: '100%' }}>Book a Demo</Link>
             </div>
           </div>
