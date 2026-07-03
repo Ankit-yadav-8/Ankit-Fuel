@@ -102,7 +102,7 @@ input, select, textarea { font-family: inherit; }
 .btn--white:hover { background: var(--bg-gray); transform: translateY(-1px); }
 
 /* ---------------------------------------
-   NAVBAR (Dark Theme)
+   NAVBAR (Light Theme)
    --------------------------------------- */
 .navbar {
   position: fixed;
@@ -110,8 +110,8 @@ input, select, textarea { font-family: inherit; }
   left: 0;
   right: 0;
   z-index: 1000;
-  background: #111827; /* Dark background */
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  background: white;
+  border-bottom: 1px solid var(--border-light);
   transition: all var(--transition);
   height: 70px;
 }
@@ -132,15 +132,14 @@ input, select, textarea { font-family: inherit; }
 }
 .navbar__logo-img {
   height: 28px;
-  filter: brightness(0) invert(1);
 }
 .navbar__logo-text {
   font-size: 20px;
   font-weight: 800;
-  color: white;
+  color: var(--text-primary);
   letter-spacing: -0.5px;
 }
-.navbar__links { display: flex; align-items: center; gap: 24px; flex: 1; height: 100%; }
+.navbar__links { display: flex; align-items: center; justify-content: center; gap: 32px; flex: 1; height: 100%; }
 .navbar__item { position: relative; height: 100%; display: flex; align-items: center; }
 .navbar__link {
   display: flex;
@@ -148,22 +147,12 @@ input, select, textarea { font-family: inherit; }
   height: 100%;
   font-size: 14px;
   font-weight: 600;
-  color: #9ca3af;
+  color: var(--text-secondary);
   position: relative;
   transition: color var(--transition);
 }
 .navbar__link:hover, .navbar__link--active {
-  color: white;
-}
-.navbar__link--active::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: #f59e0b; /* Orange active underline */
-  border-radius: 3px 3px 0 0;
+  color: #0F172A; /* Dark blue/black like ionage */
 }
 
 .navbar__actions { display: flex; align-items: center; margin-left: auto; gap: 24px; }
