@@ -7,6 +7,7 @@ import EVPage from './pages/EVPage';
 import CNGPage from './pages/CNGPage';
 import PetrolPage from './pages/PetrolPage';
 import DieselPage from './pages/DieselPage';
+import RoutePlanner from './pages/RoutePlanner';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';

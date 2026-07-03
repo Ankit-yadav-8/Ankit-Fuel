@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 const navLinks = [
   { label: 'Home', path: '/' },
   { label: 'Find Stations', path: '/petrol' },
+  { label: 'Plan Route', path: '/route-planner' },
   { label: 'EV', path: '/ev' },
   { label: 'Petrol & Diesel', path: '/petrol' },
   { label: 'CNG', path: '/cng' },
