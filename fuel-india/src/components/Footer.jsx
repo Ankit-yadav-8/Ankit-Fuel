@@ -53,12 +53,7 @@ export default function Footer() {
                 <span className="footer__logo-text" style={{ color: '#111827' }}>Fuel-India</span>
               </Link>
               
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginTop: '24px', marginBottom: '24px' }}>
-                <span style={{ fontSize: '11px', fontWeight: 'bold', color: '#111827', border: '1px solid #E5E7EB', padding: '4px 8px', borderRadius: '4px' }}>🏛 NITI Aayog</span>
-                <span style={{ fontSize: '11px', fontWeight: 'bold', color: '#EA580C', border: '1px solid #E5E7EB', padding: '4px 8px', borderRadius: '4px' }}>#startupindia</span>
-                <span style={{ fontSize: '11px', fontWeight: 'bold', color: '#16A34A', border: '1px solid #E5E7EB', padding: '4px 8px', borderRadius: '4px' }}>🍃 Shoonya</span>
-                <span style={{ fontSize: '11px', fontWeight: 'bold', color: '#3B82F6', border: '1px solid #E5E7EB', padding: '4px 8px', borderRadius: '4px' }}>✓ ISO 27001</span>
-              </div>
+
 
               <div className="footer__socials" style={{ marginTop: '32px' }}>
                 <a href="#" className="footer__social" aria-label="Twitter">
