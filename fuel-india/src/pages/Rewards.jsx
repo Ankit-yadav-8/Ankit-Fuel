@@ -100,17 +100,7 @@ export default function Rewards() {
         </div>
       </section>
 
-      <section className="cta-section">
-        <div className="container">
-          <div className="cta-card">
-            <h2 className="cta-card__title">Start Earning Today</h2>
-            <p className="cta-card__desc">Sign up and get 50 bonus points instantly. Your first queue report earns another 10!</p>
-            <div className="cta-card__actions">
-              <Link to="/route-planner" className="btn btn--primary btn--lg">Join Now — It's Free</Link>
-            </div>
-          </div>
-        </div>
-      </section>
+
     </div>
   );
 }

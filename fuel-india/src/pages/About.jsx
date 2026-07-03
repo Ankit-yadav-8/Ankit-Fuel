@@ -123,19 +123,6 @@ export default function About() {
           </div>
         </div>
       </section>
-
-      <section className="cta-section">
-        <div className="container">
-          <div className="cta-card">
-            <h2 className="cta-card__title">Join Our Journey</h2>
-            <p className="cta-card__desc">We're hiring! Help us build the future of fuel navigation in India.</p>
-            <div className="cta-card__actions">
-              <Link to="/contact" className="btn btn--primary btn--lg">View Open Positions</Link>
-              <Link to="/contact" className="btn btn--white btn--lg">Partner With Us</Link>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

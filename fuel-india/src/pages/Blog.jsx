@@ -135,19 +135,6 @@ export default function Blog() {
           </div>
         </div>
       </section>
-
-      <section className="cta-section">
-        <div className="container">
-          <div className="cta-card">
-            <h2 className="cta-card__title">Subscribe to Our Newsletter</h2>
-            <p className="cta-card__desc">Weekly fuel price updates, industry insights, and product announcements. No spam.</p>
-            <div className="newsletter-form">
-              <input type="email" placeholder="Enter your email" className="newsletter-form__input" />
-              <button className="btn btn--primary">Subscribe ↗</button>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

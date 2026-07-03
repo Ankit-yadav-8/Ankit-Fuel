@@ -124,19 +124,6 @@ export default function DieselPage() {
           </div>
         </div>
       </section>
-
-      <section className="cta-section">
-        <div className="container">
-          <div className="cta-card">
-            <h2 className="cta-card__title">Ready to Optimize Your Fleet?</h2>
-            <p className="cta-card__desc">Reduce refueling costs by 35% with AI-powered route planning and queue prediction.</p>
-            <div className="cta-card__actions">
-              <Link to="/contact" className="btn btn--primary btn--lg">Request Demo</Link>
-              <Link to="/route-planner" className="btn btn--white btn--lg">Try Free</Link>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
