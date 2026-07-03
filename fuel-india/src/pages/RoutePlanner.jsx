@@ -6,6 +6,157 @@ import L from 'leaflet';
 // India bounding box for geocoding bias (minLon,minLat,maxLon,maxLat)
 const INDIA_BBOX = '68.1,6.5,97.4,37.1';
 
+/* ---------- Fuzzy place matching (approximates Google's spell correction) ---------- */
+
+// Edit distance with adjacent-transposition support ("kahtu" vs "khatu" = 1)
+function editDistance(a, b) {
+  const m = a.length;
+  const n = b.length;
+  if (!m) return n;
+  if (!n) return m;
+  const d = Array.from({ length: m + 1 }, (_, i) => {
+    const row = new Array(n + 1).fill(0);
+    row[0] = i;
+    return row;
+  });
+  for (let j = 0; j <= n; j++) d[0][j] = j;
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + cost);
+      if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) {
+        d[i][j] = Math.min(d[i][j], d[i - 2][j - 2] + 1);
+      }
+    }
+  }
+  return d[m][n];
+}
+
+// 0..1: how well a candidate place matches what the user typed
+function matchScore(query, candidateText) {
+  const qTokens = query.toLowerCase().split(/\s+/).filter((t) => t.length > 1);
+  const cTokens = candidateText.toLowerCase().split(/[\s,]+/).filter(Boolean);
+  if (!qTokens.length || !cTokens.length) return 0;
+  let total = 0;
+  for (const q of qTokens) {
+    let best = 0;
+    for (const c of cTokens) {
+      let sim = 1 - editDistance(q, c) / Math.max(q.length, c.length);
+      if (c.startsWith(q)) sim = Math.max(sim, 0.9);
+      if (sim > best) best = sim;
+    }
+    total += best;
+  }
+  return total / qTokens.length;
+}
+
+// Spelling variants via adjacent-letter swaps per word ("kahtu shayam" -> "khatu shayam")
+function spellingVariants(query, max = 6) {
+  const tokens = query.toLowerCase().split(/\s+/);
+  const variants = [];
+  tokens.forEach((tok, ti) => {
+    if (tok.length < 4) return;
+    for (let i = 0; i < tok.length - 1 && variants.length < max; i++) {
+      if (tok[i] === tok[i + 1]) continue;
+      const swapped = tok.slice(0, i) + tok[i + 1] + tok[i] + tok.slice(i + 2);
+      variants.push(tokens.map((t, j) => (j === ti ? swapped : t)).join(' '));
+    }
+  });
+  return variants;
+}
+
+async function photonSearch(query, limit = 8) {
+  const res = await fetch(
+    `https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&limit=${limit}&lang=en&bbox=${INDIA_BBOX}`
+  );
+  const data = await res.json();
+  return (data.features || [])
+    .map((f) => {
+      const p = f.properties || {};
+      const secondary = [p.street, p.district, p.city, p.county, p.state]
+        .filter((v) => v && v !== p.name)
+        .filter((v, i, a) => a.indexOf(v) === i)
+        .join(', ');
+      return {
+        name: p.name || '',
+        secondary,
+        lat: f.geometry.coordinates[1],
+        lon: f.geometry.coordinates[0],
+      };
+    })
+    .filter((it) => it.name);
+}
+
+// Search Photon, score results, and retry with corrected spellings when they look wrong.
+// Returns candidates sorted best-first, each with a .score.
+async function findPlaces(query, goodScore = 0.65) {
+  let candidates = [];
+  try {
+    candidates = await photonSearch(query);
+  } catch {
+    /* keep going — variants may still work */
+  }
+  candidates.forEach((c) => {
+    c.score = matchScore(query, `${c.name} ${c.secondary}`);
+  });
+  let best = candidates.length ? Math.max(...candidates.map((c) => c.score)) : 0;
+
+  if (best < goodScore) {
+    for (const variant of spellingVariants(query)) {
+      try {
+        const more = await photonSearch(variant, 4);
+        more.forEach((c) => {
+          // small penalty so exact-spelling matches win ties
+          c.score = matchScore(variant, `${c.name} ${c.secondary}`) - 0.05;
+        });
+        candidates = candidates.concat(more);
+        if (more.length) best = Math.max(best, ...more.map((c) => c.score));
+        if (best >= 0.85) break;
+      } catch {
+        /* try next variant */
+      }
+    }
+  }
+
+  const seen = new Set();
+  return candidates
+    .sort((a, b) => b.score - a.score)
+    .filter((c) => {
+      const key = `${c.name}|${c.secondary}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+}
+
+// Resolve free text to one place; throws (with .didYouMean when we have a guess)
+// instead of routing to a low-confidence match.
+async function resolvePlace(query) {
+  const candidates = await findPlaces(query);
+  const best = candidates[0];
+  if (best && best.score >= 0.6) return best;
+  try {
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/search?format=json&countrycodes=in&q=${encodeURIComponent(query)}`
+    );
+    const data = await res.json();
+    if (data?.length) {
+      return {
+        name: data[0].display_name.split(',')[0],
+        secondary: '',
+        lat: parseFloat(data[0].lat),
+        lon: parseFloat(data[0].lon),
+        score: 1,
+      };
+    }
+  } catch {
+    /* fall through */
+  }
+  const err = new Error(`Could not find "${query}". Try picking a place from the suggestions.`);
+  if (best && best.score >= 0.35) err.didYouMean = best;
+  throw err;
+}
+
 // Google Maps style origin marker: white circle with dark ring
 const originIcon = L.divIcon({
   className: 'gm-marker',
@@ -105,11 +256,13 @@ export default function RoutePlanner() {
   const [stopMarkers, setStopMarkers] = useState([]); // resolved [lat,lon] per stop
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [didYouMean, setDidYouMean] = useState(null); // { fieldIdx, item }
 
   // Autocomplete state
   const [suggestions, setSuggestions] = useState({ fieldIdx: -1, items: [] });
   const suggestTimer = useRef(null);
   const suggestSeq = useRef(0);
+  const searchSeq = useRef(0);
 
   const [myLocation, setMyLocation] = useState(null);
   const [locating, setLocating] = useState(false);
@@ -125,6 +278,23 @@ export default function RoutePlanner() {
   useEffect(() => {
     handleSearch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // If location permission is already granted, show the blue dot right away
+  useEffect(() => {
+    if (!navigator.permissions?.query || !navigator.geolocation) return;
+    navigator.permissions
+      .query({ name: 'geolocation' })
+      .then((status) => {
+        if (status.state === 'granted') {
+          navigator.geolocation.getCurrentPosition(
+            (pos) => setMyLocation([pos.coords.latitude, pos.coords.longitude]),
+            () => {},
+            { enableHighAccuracy: true, timeout: 15000 }
+          );
+        }
+      })
+      .catch(() => {});
   }, []);
 
   // Re-route automatically when the travel mode changes
@@ -143,27 +313,12 @@ export default function RoutePlanner() {
   const fetchSuggestions = async (fieldIdx, query) => {
     const seq = ++suggestSeq.current;
     try {
-      const res = await fetch(
-        `https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&limit=6&lang=en&bbox=${INDIA_BBOX}`
-      );
-      const data = await res.json();
+      // findPlaces retries corrected spellings when results score poorly
+      const items = await findPlaces(query, 0.5);
       // Discard stale responses: a newer fetch started, or the input text changed
       if (seq !== suggestSeq.current) return;
       if (fieldsRef.current[fieldIdx]?.text.trim() !== query) return;
-      const items = (data.features || []).map((f) => {
-        const p = f.properties || {};
-        const secondary = [p.street, p.district, p.city, p.county, p.state]
-          .filter((v) => v && v !== p.name)
-          .filter((v, i, a) => a.indexOf(v) === i)
-          .join(', ');
-        return {
-          name: p.name || query,
-          secondary,
-          lat: f.geometry.coordinates[1],
-          lon: f.geometry.coordinates[0],
-        };
-      });
-      setSuggestions({ fieldIdx, items });
+      setSuggestions({ fieldIdx, items: items.slice(0, 8) });
     } catch {
       /* suggestions are best-effort */
     }
@@ -171,6 +326,7 @@ export default function RoutePlanner() {
 
   const updateField = (idx, text) => {
     setFields((prev) => prev.map((f, i) => (i === idx ? { ...f, text, coords: null } : f)));
+    setDidYouMean(null);
     clearTimeout(suggestTimer.current);
     if (text.trim().length >= 2) {
       suggestTimer.current = setTimeout(() => fetchSuggestions(idx, text.trim()), 250);
@@ -190,6 +346,11 @@ export default function RoutePlanner() {
     setSuggestions({ fieldIdx: -1, items: [] });
   };
 
+  const geoErrorMessage = (err) =>
+    err && err.code === 1
+      ? 'Location permission is blocked. Click the lock icon in the address bar, allow Location, then try again.'
+      : 'Could not determine your location. Make sure GPS/location services are turned on.';
+
   const useMyLocationFor = (idx) => {
     setSuggestions({ fieldIdx: -1, items: [] });
     if (!navigator.geolocation) {
@@ -202,8 +363,18 @@ export default function RoutePlanner() {
         setMyLocation(loc);
         setFields((prev) => prev.map((f, i) => (i === idx ? { ...f, text: 'Your location', coords: loc } : f)));
       },
-      () => setError('Could not get your location. Please allow location access.')
+      (err) => setError(geoErrorMessage(err)),
+      { enableHighAccuracy: true, timeout: 15000 }
     );
+  };
+
+  const applyDidYouMean = () => {
+    if (!didYouMean) return;
+    selectSuggestion(didYouMean.fieldIdx, didYouMean.item);
+    setDidYouMean(null);
+    setError('');
+    // Let React commit the field update before re-searching
+    setTimeout(() => handleSearch(), 0);
   };
 
   const closeSuggestions = () => {
@@ -239,44 +410,25 @@ export default function RoutePlanner() {
         const loc = [pos.coords.latitude, pos.coords.longitude];
         setMyLocation(loc);
         setLocating(false);
-        if (mapRef.current) mapRef.current.flyTo(loc, 15, { duration: 1.2 });
+        if (mapRef.current) mapRef.current.flyTo(loc, 16, { duration: 1.2 });
       },
-      () => {
+      (err) => {
         setLocating(false);
-        setError('Could not get your location. Please allow location access in your browser.');
+        setError(geoErrorMessage(err));
       },
-      { enableHighAccuracy: true, timeout: 10000 }
+      { enableHighAccuracy: true, timeout: 15000 }
     );
   };
 
   /* ---------- Geocoding + routing ---------- */
 
-  // Photon first (handles typos like "kahtu shayam ji"), Nominatim as fallback
-  const geocode = async (query) => {
-    try {
-      const res = await fetch(
-        `https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&limit=1&lang=en&bbox=${INDIA_BBOX}`
-      );
-      const data = await res.json();
-      if (data.features?.length) {
-        const [lon, lat] = data.features[0].geometry.coordinates;
-        return [lat, lon];
-      }
-    } catch {
-      /* fall through to Nominatim */
-    }
-    const res = await fetch(
-      `https://nominatim.openstreetmap.org/search?format=json&countrycodes=in&q=${encodeURIComponent(query)}`
-    );
-    const data = await res.json();
-    if (!data || data.length === 0) throw new Error(`Could not find "${query}". Try picking a suggestion from the list.`);
-    return [parseFloat(data[0].lat), parseFloat(data[0].lon)];
-  };
-
   const handleSearch = async (e, mode = travelMode) => {
     if (e) e.preventDefault();
-    const activeFields = fieldsRef.current.filter((f) => f.text.trim() !== '');
-    if (activeFields.length < 2) {
+    const activeIdx = [];
+    fieldsRef.current.forEach((f, i) => {
+      if (f.text.trim() !== '') activeIdx.push(i);
+    });
+    if (activeIdx.length < 2) {
       setError('Please enter a starting point and a destination.');
       return;
     }
@@ -286,17 +438,43 @@ export default function RoutePlanner() {
       return;
     }
 
+    // Supersede any search that is still running (double clicks, StrictMode
+    // double-mount, mode switches) so a stale search can't write its results
+    const seq = ++searchSeq.current;
+    const stale = () => seq !== searchSeq.current;
+
     setLoading(true);
     setError('');
+    setDidYouMean(null);
+    // Invalidate any in-flight autocomplete fetch so it can't reopen the dropdown
+    ++suggestSeq.current;
+    clearTimeout(suggestTimer.current);
     setSuggestions({ fieldIdx: -1, items: [] });
 
     try {
-      // Resolve every stop (use coords picked from suggestions when available)
+      // Resolve every stop (coords picked from suggestions are used as-is)
       const resolved = [];
-      for (const f of activeFields) {
-        resolved.push(f.coords || (await geocode(f.text.trim())));
+      for (const i of activeIdx) {
+        const f = fieldsRef.current[i];
+        if (f.coords) {
+          resolved.push(f.coords);
+          continue;
+        }
+        let place;
+        try {
+          place = await resolvePlace(f.text.trim());
+        } catch (err) {
+          if (err.didYouMean && !stale()) setDidYouMean({ fieldIdx: i, item: err.didYouMean });
+          throw err;
+        }
+        if (stale()) return;
+        resolved.push([place.lat, place.lon]);
+        // Show the resolved place in the input, like Google rewrites your query
+        const label = place.secondary ? `${place.name}, ${place.secondary.split(', ')[0]}` : place.name;
+        setFields((prev) =>
+          prev.map((pf, pi) => (pi === i ? { ...pf, text: label, coords: [place.lat, place.lon] } : pf))
+        );
       }
-      setStopMarkers(resolved);
 
       const coordStr = resolved.map(([lat, lon]) => `${lon},${lat}`).join(';');
       // OSRM only supports alternatives for simple A→B routes
@@ -319,6 +497,7 @@ export default function RoutePlanner() {
       if (!directionsData || directionsData.code !== 'Ok' || !directionsData.routes?.length) {
         throw new Error('Could not find a route between these locations.');
       }
+      if (stale()) return;
 
       const parsed = directionsData.routes.slice(0, 3).map((route) => ({
         coords: route.geometry.coordinates.map((c) => [c[1], c[0]]),
@@ -327,14 +506,17 @@ export default function RoutePlanner() {
         summary: route.legs?.map((l) => l.summary).filter(Boolean).join(', ') || '',
       }));
 
+      // Update markers and routes together so the map never shows a mismatched pair
+      setStopMarkers(resolved);
       setRoutes(parsed);
       setSelectedRoute(0);
     } catch (err) {
       console.error(err);
+      if (stale()) return;
       setError(err.message || 'Failed to fetch route. Please try again later.');
       setRoutes([]);
     } finally {
-      setLoading(false);
+      if (!stale()) setLoading(false);
     }
   };
 
@@ -547,7 +729,16 @@ export default function RoutePlanner() {
         </div>
 
         <div className="gmaps-panel__results">
-          {error && <div className="gmaps-error">{error}</div>}
+          {error && (
+            <div className="gmaps-error">
+              {error}
+              {didYouMean && (
+                <button type="button" className="gmaps-didyoumean" onClick={applyDidYouMean}>
+                  Did you mean <b>{didYouMean.item.name}{didYouMean.item.secondary ? `, ${didYouMean.item.secondary.split(', ').slice(-1)[0]}` : ''}</b>?
+                </button>
+              )}
+            </div>
+          )}
 
           {loading && (
             <div className="gmaps-loading">
@@ -929,6 +1120,22 @@ export default function RoutePlanner() {
           border-radius: 8px;
           font-size: 14px;
         }
+
+        .gmaps-didyoumean {
+          display: block;
+          margin-top: 10px;
+          padding: 8px 14px;
+          background: #fff;
+          border: 1px solid #DADCE0;
+          border-radius: 18px;
+          color: #1A73E8;
+          font-size: 14px;
+          font-family: inherit;
+          cursor: pointer;
+          text-align: left;
+        }
+        .gmaps-didyoumean:hover { background: #F8F9FA; box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
+        .gmaps-didyoumean b { font-weight: 600; }
 
         .gmaps-loading {
           display: flex;
