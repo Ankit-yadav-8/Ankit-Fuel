@@ -1,0 +1,21 @@
+{
+  "name": "fuel-india-server",
+  "version": "1.0.0",
+  "description": "Fuel-India Backend API Server",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js",
+    "seed": "node seed/seedStations.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.7.0",
+    "morgan": "^1.10.0"
+  }
+}
