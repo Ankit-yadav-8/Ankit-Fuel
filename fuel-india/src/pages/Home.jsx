@@ -133,69 +133,57 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Floating product cards */}
-          <div className="hero__cards">
-            <div className="hero__float-card hero__float-card--1">
-              <img src="./images/cng_pump_1783050817670.png" alt="CNG Station" />
-              <div className="hero__float-overlay">
-                <span>CNG & Gas Stations</span>
-              </div>
-              <div className="hero__float-stats">
-                <div className="hero__float-stat">
-                  <span className="hero__float-stat-icon">⛽</span>
-                  <span>In Use</span>
-                  <strong className="hero__float-stat-val hero__float-stat-val--green">↓ 120</strong>
-                </div>
-                <div className="hero__float-stat">
-                  <span className="hero__float-stat-icon">📊</span>
-                  <span>Active</span>
-                  <strong className="hero__float-stat-val hero__float-stat-val--green">₿ 145</strong>
-                </div>
-              </div>
-            </div>
-
-            <div className="hero__float-card hero__float-card--2">
-              <div className="hero__float-mini">
-                <div className="hero__float-mini-avatar">UC</div>
+          {/* Hero Collage Section */}
+          <div className="hero__collage">
+            {/* Column 1 */}
+            <div className="hero__collage-col hero__collage-col--1">
+              <div className="hero__widget hero__widget--mini">
+                <div className="hero__widget-avatar">UC</div>
                 <div>
-                  <strong>Urban Company Pvt Ltd</strong>
-                  <span className="hero__float-mini-sub">10 Contracts</span>
+                  <strong>Urban Company</strong>
+                  <span>10 Contracts</span>
+                </div>
+              </div>
+              <div className="hero__card hero__card--tall">
+                <img src="./images/cng_pump_1783050817670.png" alt="CNG Stations" />
+                <div className="hero__card-overlay">CNG & Gas Stations</div>
+                
+                {/* Overlapping stat on the card */}
+                <div className="hero__card-floating-stat">
+                  <div><span className="icon">⛽</span> In Use <strong className="green">↓ 120</strong></div>
+                  <div><span className="icon">📊</span> Active <strong className="green">₿ 145</strong></div>
                 </div>
               </div>
             </div>
 
-            <div className="hero__float-card hero__float-card--3">
-              <img src="./images/ev_charging_1783050805744.png" alt="EV Charging" />
-              <div className="hero__float-overlay">
-                <span>Home & Public Charging</span>
+            {/* Column 2 */}
+            <div className="hero__collage-col hero__collage-col--2">
+              <div className="hero__card hero__card--wide">
+                <img src="./images/ev_charging_1783050805744.png" alt="EV Charging" />
+                <div className="hero__card-overlay">Home & Public Charging</div>
+              </div>
+              <div className="hero__card hero__card--square">
+                <img src="./images/diesel_fleet_1783050838517.png" alt="Fleet Drivers" />
+                <div className="hero__card-overlay">Fleet Driver Details</div>
               </div>
             </div>
 
-            <div className="hero__float-card hero__float-card--4">
-              <img src="./images/diesel_fleet_1783050838517.png" alt="Fleet" />
-              <div className="hero__float-overlay hero__float-overlay--dark">
-                <span>Fleet Driver Details</span>
-              </div>
-            </div>
-
-            <div className="hero__float-card hero__float-card--5">
-              <div className="hero__float-route">
-                <div className="hero__float-route-dots">
-                  <span className="hero__float-route-dot hero__float-route-dot--start"></span>
-                  <span className="hero__float-route-line"></span>
-                  <span className="hero__float-route-dot hero__float-route-dot--mid"></span>
-                  <span className="hero__float-route-line"></span>
-                  <span className="hero__float-route-dot hero__float-route-dot--end"></span>
+            {/* Column 3 */}
+            <div className="hero__collage-col hero__collage-col--3">
+              <div className="hero__widget hero__widget--green">
+                <div className="hero__widget-badge">My Green Path</div>
+                <div className="hero__widget-energy">
+                  <div><span>⚡</span><strong>166 kWh</strong><small>Energy used</small></div>
+                  <div><span>🌱</span><strong>1Kg CO2</strong><small>Saved</small></div>
                 </div>
-                <span className="hero__float-route-label">✓ Journey Possible</span>
               </div>
-            </div>
-
-            <div className="hero__float-card hero__float-card--6">
-              <div className="hero__float-badge">My Green Path</div>
-              <div className="hero__float-energy">
-                <div><span className="hero__float-energy-icon">⚡</span> <strong>166 kWh</strong><br/><small>Energy used</small></div>
-                <div><span className="hero__float-energy-icon">🌱</span> <strong>1Kg CO2</strong><br/><small>Saved</small></div>
+              <div className="hero__widget hero__widget--route">
+                <div className="hero__widget-dots">
+                  <span className="dot dot--start"></span><span className="line"></span>
+                  <span className="dot dot--mid"></span><span className="line"></span>
+                  <span className="dot dot--end"></span>
+                </div>
+                <div className="hero__widget-route-text">✓ Journey Possible</div>
               </div>
             </div>
           </div>
