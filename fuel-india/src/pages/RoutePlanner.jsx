@@ -113,6 +113,7 @@ export default function RoutePlanner() {
 
   const [myLocation, setMyLocation] = useState(null);
   const [locating, setLocating] = useState(false);
+  const [mapType, setMapType] = useState('road'); // 'road' | 'satellite'
   const mapRef = useRef(null);
   const fieldsRef = useRef(fields);
   fieldsRef.current = fields;
@@ -369,13 +370,28 @@ export default function RoutePlanner() {
         <MapContainer
           center={defaultCenter}
           zoom={defaultZoom}
+          maxZoom={20}
           style={{ width: '100%', height: '100%' }}
           zoomControl={false}
         >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-            url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-          />
+          {/* Google's own tiles: full street/POI/place detail identical to Google Maps */}
+          {mapType === 'road' ? (
+            <TileLayer
+              key="road"
+              attribution='&copy; Google Maps'
+              url="https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}&hl=en"
+              subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
+              maxZoom={20}
+            />
+          ) : (
+            <TileLayer
+              key="satellite"
+              attribution='&copy; Google Maps'
+              url="https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}&hl=en"
+              subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
+              maxZoom={20}
+            />
+          )}
           <ZoomControl position="bottomright" />
           <MapRefCapture mapRef={mapRef} />
 
@@ -421,6 +437,17 @@ export default function RoutePlanner() {
 
           {routes.length > 0 && <MapBounds routes={routes} />}
         </MapContainer>
+
+        {/* Google-style Map/Satellite toggle (bottom-left) */}
+        <button
+          type="button"
+          className={`gmaps-layers ${mapType === 'satellite' ? 'is-satellite' : ''}`}
+          onClick={() => setMapType(mapType === 'road' ? 'satellite' : 'road')}
+          title={mapType === 'road' ? 'Switch to satellite view' : 'Switch to map view'}
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 18.54l-7.37-5.73L3 14.07l9 7 9-7-1.63-1.27-7.38 5.74zM12 16l7.36-5.73L21 9l-9-7-9 7 1.63 1.27L12 16z" /></svg>
+          <span>{mapType === 'road' ? 'Satellite' : 'Map'}</span>
+        </button>
       </div>
 
       {/* Floating directions panel (Google Maps style) */}
@@ -590,6 +617,36 @@ export default function RoutePlanner() {
           inset: 0;
           z-index: 1;
         }
+
+        /* Map/Satellite toggle like Google's Layers button */
+        .gmaps-layers {
+          position: absolute;
+          bottom: 24px;
+          left: 428px;
+          z-index: 999;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 3px;
+          width: 74px;
+          height: 74px;
+          background: #fff;
+          color: #3C4043;
+          border: 2px solid #fff;
+          border-radius: 10px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+          cursor: pointer;
+          font-family: inherit;
+          font-size: 12px;
+          font-weight: 500;
+        }
+        .gmaps-layers:hover { color: #1A73E8; }
+        .gmaps-layers.is-satellite {
+          background: #202124;
+          color: #fff;
+        }
+        .gmaps-layers.is-satellite:hover { color: #8AB4F8; }
 
         /* ---- Floating directions panel ---- */
         .gmaps-panel {
@@ -1087,6 +1144,12 @@ export default function RoutePlanner() {
           .gmaps-route__via { max-width: 55vw; }
           .gmaps-empty { padding: 24px; }
           .gmaps-empty svg { display: none; }
+          .gmaps-layers {
+            left: 12px;
+            bottom: 24px;
+            width: 60px;
+            height: 60px;
+          }
         }
       ` }} />
     </div>
