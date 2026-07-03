@@ -196,21 +196,7 @@ export default function Home() {
                 <img src="./images/diesel_fleet_1783050838517.png" alt="Fleet Drivers" />
                 <div className="hero__card-overlay">Fleet Driver Details</div>
                 
-                {/* Floating Widget over image */}
-                <div className="hero__widget hero__widget--mini" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '80%', flexDirection: 'column', alignItems: 'flex-start', padding: '24px' }}>
-                   <div style={{ color: '#3b82f6', fontSize: '11px', border: '1px solid #3b82f6', borderRadius: '12px', padding: '2px 8px', marginBottom: '12px' }}>Fleet Driver Details</div>
-                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
-                      <div className="hero__widget-avatar" style={{width: '32px', height: '32px'}}>MR</div>
-                      <div>
-                        <strong style={{ fontSize: '13px' }}>Muthuswamy R</strong>
-                        <span style={{ fontSize: '11px', color: '#22c55e', display: 'flex', alignItems: 'center', gap: '4px' }}><span style={{width: '6px', height: '6px', background: '#22c55e', borderRadius: '50%'}}></span> Charging</span>
-                      </div>
-                      <div style={{ marginLeft: 'auto', fontWeight: '800', fontSize: '16px' }}>76%</div>
-                   </div>
-                   <div style={{ width: '100%', height: '4px', background: '#e5e7eb', borderRadius: '2px', marginBottom: '16px' }}>
-                     <div style={{ width: '76%', height: '100%', background: '#22c55e', borderRadius: '2px' }}></div>
-                   </div>
-                </div>
+
               </div>
             </div>
           </div>
@@ -367,19 +353,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── CTA Section ─── */}
-      <section className="cta-section">
-        <div className="container">
-          <div className="cta-card">
-            <h2 className="cta-card__title">Ready to Navigate Smarter?</h2>
-            <p className="cta-card__desc">Join 50,000+ users who save time and money on every refueling stop.</p>
-            <div className="cta-card__actions">
-              <Link to="/route-planner" className="btn btn--primary btn--lg">Get Started Free</Link>
-              <Link to="/contact" className="btn btn--white btn--lg">Talk to Sales</Link>
-            </div>
-          </div>
-        </div>
-      </section>
+
     </div>
   );
 }
