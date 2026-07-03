@@ -135,41 +135,26 @@ export default function Home() {
 
           {/* Hero Collage Section */}
           <div className="hero__collage">
-            {/* Column 1 */}
+            {/* Column 1 (Left) */}
             <div className="hero__collage-col hero__collage-col--1">
-              <div className="hero__widget hero__widget--mini">
-                <div className="hero__widget-avatar">UC</div>
-                <div>
-                  <strong>Urban Company</strong>
-                  <span>10 Contracts</span>
-                </div>
-              </div>
               <div className="hero__card hero__card--tall">
-                <img src="./images/cng_pump_1783050817670.png" alt="CNG Stations" />
-                <div className="hero__card-overlay">CNG & Gas Stations</div>
+                <img src="./images/worker_portrait_1783055050874.png" alt="Worker Portrait" />
                 
-                {/* Overlapping stat on the card */}
-                <div className="hero__card-floating-stat">
-                  <div><span className="icon">⛽</span> In Use <strong className="green">↓ 120</strong></div>
-                  <div><span className="icon">📊</span> Active <strong className="green">₿ 145</strong></div>
+                {/* Floating stats on the left card */}
+                <div className="hero__card-floating-stat" style={{ top: '20px', right: 'auto', left: '20px' }}>
+                  <div style={{ fontSize: '11px', color: '#666', paddingBottom: '4px' }}>CPO Revenue</div>
+                  <strong style={{ color: '#22c55e', fontSize: '18px' }}>₹4,63,987</strong>
+                </div>
+                <div className="hero__card-floating-stat" style={{ top: '100px', right: 'auto', left: '20px' }}>
+                  <div style={{ fontSize: '11px', color: '#666' }}>In Use</div>
+                  <div style={{ color: '#3b82f6', fontSize: '16px', fontWeight: '800' }}>⚡ 120</div>
+                </div>
+                <div className="hero__card-floating-stat" style={{ top: '160px', right: 'auto', left: '20px' }}>
+                  <div style={{ fontSize: '11px', color: '#666' }}>Active</div>
+                  <div style={{ color: '#14b8a6', fontSize: '16px', fontWeight: '800' }}>⛽ 145</div>
                 </div>
               </div>
-            </div>
 
-            {/* Column 2 */}
-            <div className="hero__collage-col hero__collage-col--2">
-              <div className="hero__card hero__card--wide">
-                <img src="./images/ev_charging_1783050805744.png" alt="EV Charging" />
-                <div className="hero__card-overlay">Home & Public Charging</div>
-              </div>
-              <div className="hero__card hero__card--square">
-                <img src="./images/diesel_fleet_1783050838517.png" alt="Fleet Drivers" />
-                <div className="hero__card-overlay">Fleet Driver Details</div>
-              </div>
-            </div>
-
-            {/* Column 3 */}
-            <div className="hero__collage-col hero__collage-col--3">
               <div className="hero__widget hero__widget--green">
                 <div className="hero__widget-badge">My Green Path</div>
                 <div className="hero__widget-energy">
@@ -177,13 +162,59 @@ export default function Home() {
                   <div><span>🌱</span><strong>1Kg CO2</strong><small>Saved</small></div>
                 </div>
               </div>
-              <div className="hero__widget hero__widget--route">
-                <div className="hero__widget-dots">
-                  <span className="dot dot--start"></span><span className="line"></span>
-                  <span className="dot dot--mid"></span><span className="line"></span>
-                  <span className="dot dot--end"></span>
+            </div>
+
+            {/* Column 2 (Center) */}
+            <div className="hero__collage-col hero__collage-col--2">
+              <div className="hero__card hero__card--wide" style={{ background: 'white', padding: '32px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                <div className="hero__widget hero__widget--mini" style={{ width: '100%', marginBottom: '24px' }}>
+                  <div className="hero__widget-avatar">UC</div>
+                  <div>
+                    <strong>Urban Company Pvt Ltd</strong>
+                    <span>10 Contracts</span>
+                  </div>
                 </div>
-                <div className="hero__widget-route-text">✓ Journey Possible</div>
+                <h3 style={{ fontSize: '20px', fontWeight: '800', textAlign: 'center', lineHeight: '1.3' }}>Marketplace for connecting CPOs and Fleets</h3>
+              </div>
+              
+              <div className="hero__card hero__card--square">
+                <img src="./images/map_graphic_1783055080446.png" alt="Route Map" />
+                <div className="hero__widget hero__widget--route" style={{ position: 'absolute', bottom: '20px', left: '50%', transform: 'translateX(-50%)', width: '90%' }}>
+                  <div className="hero__widget-dots">
+                    <span className="dot dot--start"></span><span className="line"></span>
+                    <span className="dot dot--mid"></span><span className="line"></span>
+                    <span className="dot dot--end"></span>
+                  </div>
+                  <div className="hero__widget-route-text">✓ Journey Possible</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Column 3 (Right) */}
+            <div className="hero__collage-col hero__collage-col--3">
+              <div className="hero__card hero__card--wide">
+                <img src="./images/ev_plugging_1783055060578.png" alt="EV Charging" />
+                <div className="hero__card-overlay">Home & Public Charging</div>
+              </div>
+              
+              <div className="hero__card hero__card--square">
+                <img src="./images/charger_handle_1783055070397.png" alt="Fleet Drivers" />
+                
+                {/* Floating Widget over image */}
+                <div className="hero__widget hero__widget--mini" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '80%', flexDirection: 'column', alignItems: 'flex-start', padding: '24px' }}>
+                   <div style={{ color: '#3b82f6', fontSize: '11px', border: '1px solid #3b82f6', borderRadius: '12px', padding: '2px 8px', marginBottom: '12px' }}>Fleet Driver Details</div>
+                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+                      <img src="./images/worker_portrait_1783055050874.png" style={{ width: '32px', height: '32px', borderRadius: '50%' }} />
+                      <div>
+                        <strong style={{ fontSize: '13px' }}>Muthuswamy R</strong>
+                        <span style={{ fontSize: '11px', color: '#22c55e', display: 'flex', alignItems: 'center', gap: '4px' }}><span style={{width: '6px', height: '6px', background: '#22c55e', borderRadius: '50%'}}></span> Charging</span>
+                      </div>
+                      <div style={{ marginLeft: 'auto', fontWeight: '800', fontSize: '16px' }}>76%</div>
+                   </div>
+                   <div style={{ width: '100%', height: '4px', background: '#e5e7eb', borderRadius: '2px', marginBottom: '16px' }}>
+                     <div style={{ width: '76%', height: '100%', background: '#22c55e', borderRadius: '2px' }}></div>
+                   </div>
+                </div>
               </div>
             </div>
           </div>
