@@ -37,7 +37,7 @@ export default function About() {
               </p>
             </div>
             <div className="page-hero__image">
-              <img src="/images/route_planning.png" alt="About Fuel India" />
+              <img src="./images/route_planning.png" alt="About Fuel India" />
             </div>
           </div>
         </div>

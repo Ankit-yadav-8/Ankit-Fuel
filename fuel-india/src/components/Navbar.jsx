@@ -71,7 +71,7 @@ const navLinks = [
         },
       ],
       promo: {
-        image: '/images/ev_charging_1783050805744.png',
+        image: './images/ev_charging_1783050805744.png',
         tag: 'New Feature',
         title: "AI-Powered Fuel Route Planning for India",
         desc: 'Plan your next road trip with smart fuel stops, queue predictions, and price comparisons.',
@@ -139,7 +139,7 @@ const navLinks = [
         },
       ],
       promo: {
-        image: '/images/diesel_fleet_1783050838517.png',
+        image: './images/diesel_fleet_1783050838517.png',
         tag: 'Fleet',
         title: "Reduce Fleet Refueling Costs by 35%",
         desc: 'Enterprise-grade fleet management with AI route optimization and bulk fuel pricing.',
@@ -284,7 +284,7 @@ export default function Navbar() {
         <div className="navbar__container">
           {/* Logo */}
           <Link to="/" className="navbar__logo">
-            <img src="/images/logo.png" alt="Fuel-India" className="navbar__logo-img" />
+            <img src="./images/logo.png" alt="Fuel-India" className="navbar__logo-img" />
             <span className="navbar__logo-text">Fuel-India</span>
           </Link>
 

@@ -45,7 +45,7 @@ export default function EVPage() {
               </div>
             </div>
             <div className="page-hero__image">
-              <img src="/images/ev_charging_1783050805744.png" alt="EV Charging" />
+              <img src="./images/ev_charging_1783050805744.png" alt="EV Charging" />
             </div>
           </div>
         </div>

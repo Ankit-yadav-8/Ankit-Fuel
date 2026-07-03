@@ -46,7 +46,7 @@ export default function CNGPage() {
               </div>
             </div>
             <div className="page-hero__image">
-              <img src="/images/cng_pump_1783050817670.png" alt="CNG Station" />
+              <img src="./images/cng_pump_1783050817670.png" alt="CNG Station" />
             </div>
           </div>
         </div>

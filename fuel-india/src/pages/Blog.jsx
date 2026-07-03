@@ -8,7 +8,7 @@ const posts = [
     tag: 'EV',
     title: "India's EV Charging Infrastructure: Where We Stand in 2026",
     excerpt: 'With over 12,000 public chargers now installed, India has made significant strides. But is it enough to support the 2 million EVs expected by 2027?',
-    image: '/images/ev_charging_1783050805744.png',
+    image: './images/ev_charging_1783050805744.png',
     readTime: '6 min read',
   },
   {
@@ -17,7 +17,7 @@ const posts = [
     tag: 'CNG',
     title: 'CNG Price Trends: Why Prices Dropped 12% This Quarter',
     excerpt: 'Increased domestic gas production and policy changes have driven CNG prices to their lowest point in 18 months. Here\'s what it means for consumers.',
-    image: '/images/cng_pump_1783050817670.png',
+    image: './images/cng_pump_1783050817670.png',
     readTime: '4 min read',
   },
   {
@@ -26,7 +26,7 @@ const posts = [
     tag: 'Technology',
     title: 'How AI Queue Prediction Works Behind The Scenes',
     excerpt: 'A deep dive into the weighted scoring algorithm and temporal pattern analysis that powers our queue predictions.',
-    image: '/images/queue_prediction.png',
+    image: './images/queue_prediction.png',
     readTime: '8 min read',
   },
   {
@@ -35,7 +35,7 @@ const posts = [
     tag: 'Petrol',
     title: 'Petrol Prices in India: A City-by-City Breakdown for July 2026',
     excerpt: 'We analyzed petrol prices across 50 major cities. Here are the cheapest and most expensive places to refuel this month.',
-    image: '/images/petrol_station_1783050827829.png',
+    image: './images/petrol_station_1783050827829.png',
     readTime: '5 min read',
   },
   {
@@ -44,7 +44,7 @@ const posts = [
     tag: 'Fleet',
     title: 'How Logistics Companies Are Saving 35% on Diesel Costs',
     excerpt: 'Three case studies of fleet operators who optimized their refueling routes using AI-powered route planning.',
-    image: '/images/diesel_fleet_1783050838517.png',
+    image: './images/diesel_fleet_1783050838517.png',
     readTime: '7 min read',
   },
   {
@@ -53,7 +53,7 @@ const posts = [
     tag: 'Product',
     title: 'Introducing Fuel-India Rewards: Earn Points, Save Money',
     excerpt: 'Report queues, write reviews, upload photos — earn points redeemable for fuel vouchers and partner offers.',
-    image: '/images/route_planning.png',
+    image: './images/route_planning.png',
     readTime: '3 min read',
   },
 ];

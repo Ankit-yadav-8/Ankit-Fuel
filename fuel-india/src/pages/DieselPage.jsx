@@ -42,7 +42,7 @@ export default function DieselPage() {
               </div>
             </div>
             <div className="page-hero__image">
-              <img src="/images/diesel_fleet_1783050838517.png" alt="Diesel Fleet" />
+              <img src="./images/diesel_fleet_1783050838517.png" alt="Diesel Fleet" />
             </div>
           </div>
         </div>
@@ -105,7 +105,7 @@ export default function DieselPage() {
         <div className="container">
           <div className="feature-row feature-row--reverse">
             <div className="feature-row__image">
-              <img src="/images/route_planning.png" alt="Fleet Route" />
+              <img src="./images/route_planning.png" alt="Fleet Route" />
             </div>
             <div className="feature-row__content">
               <span className="feature-row__tag">ROUTE OPTIMIZATION</span>

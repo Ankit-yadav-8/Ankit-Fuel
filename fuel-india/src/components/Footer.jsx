@@ -49,7 +49,7 @@ export default function Footer() {
             {/* Brand column */}
             <div className="footer__brand">
               <Link to="/" className="footer__logo">
-                <img src="/images/logo.png" alt="Fuel-India" className="footer__logo-img" />
+                <img src="./images/logo.png" alt="Fuel-India" className="footer__logo-img" />
                 <span className="footer__logo-text">Fuel-India</span>
               </Link>
               <p className="footer__tagline">

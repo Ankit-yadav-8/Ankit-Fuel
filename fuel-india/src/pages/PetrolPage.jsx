@@ -44,7 +44,7 @@ export default function PetrolPage() {
               </div>
             </div>
             <div className="page-hero__image">
-              <img src="/images/petrol_station_1783050827829.png" alt="Petrol Station" />
+              <img src="./images/petrol_station_1783050827829.png" alt="Petrol Station" />
             </div>
           </div>
         </div>
@@ -68,7 +68,7 @@ export default function PetrolPage() {
         <div className="container">
           <div className="feature-row">
             <div className="feature-row__image">
-              <img src="/images/route_planning.png" alt="AI Recommendation" />
+              <img src="./images/route_planning.png" alt="AI Recommendation" />
             </div>
             <div className="feature-row__content">
               <span className="feature-row__tag">AI RECOMMENDATIONS</span>

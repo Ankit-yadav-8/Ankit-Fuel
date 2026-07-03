@@ -24,21 +24,21 @@ const testimonials = [
     name: "Rajesh Kumar",
     role: "Fleet Manager, Delhivery Logistics",
     avatar: "RK",
-    image: "/images/cng_pump_1783050817670.png"
+    image: "./images/cng_pump_1783050817670.png"
   },
   {
     quote: "Finally one app for all fuel types! I can plan my CNG stops on long drives without worrying about queues or price surprises.",
     name: "Priya Sharma",
     role: "Freelance Driver, Uber",
     avatar: "PS",
-    image: "/images/petrol_station_1783050827829.png"
+    image: "./images/petrol_station_1783050827829.png"
   },
   {
     quote: "The AI recommendations saved me ₹2,000 last month just by suggesting better-priced stations on my daily commute.",
     name: "Amit Patel",
     role: "Small Business Owner, Ahmedabad",
     avatar: "AP",
-    image: "/images/ev_charging_1783050805744.png"
+    image: "./images/ev_charging_1783050805744.png"
   },
 ];
 
@@ -47,19 +47,19 @@ const blogPosts = [
     date: 'June 28, 2026',
     tag: 'EV',
     title: "India's EV Charging Infrastructure: Where We Stand in 2026",
-    image: '/images/ev_charging_1783050805744.png',
+    image: './images/ev_charging_1783050805744.png',
   },
   {
     date: 'June 22, 2026',
     tag: 'CNG',
     title: 'CNG Price Trends: Why Prices Dropped 12% This Quarter',
-    image: '/images/cng_pump_1783050817670.png',
+    image: './images/cng_pump_1783050817670.png',
   },
   {
     date: 'June 15, 2026',
     tag: 'Technology',
     title: 'How AI Queue Prediction Works Behind The Scenes',
-    image: '/images/queue_prediction.png',
+    image: './images/queue_prediction.png',
   },
 ];
 
@@ -136,7 +136,7 @@ export default function Home() {
           {/* Floating product cards */}
           <div className="hero__cards">
             <div className="hero__float-card hero__float-card--1">
-              <img src="/images/cng_pump_1783050817670.png" alt="CNG Station" />
+              <img src="./images/cng_pump_1783050817670.png" alt="CNG Station" />
               <div className="hero__float-overlay">
                 <span>CNG & Gas Stations</span>
               </div>
@@ -165,14 +165,14 @@ export default function Home() {
             </div>
 
             <div className="hero__float-card hero__float-card--3">
-              <img src="/images/ev_charging_1783050805744.png" alt="EV Charging" />
+              <img src="./images/ev_charging_1783050805744.png" alt="EV Charging" />
               <div className="hero__float-overlay">
                 <span>Home & Public Charging</span>
               </div>
             </div>
 
             <div className="hero__float-card hero__float-card--4">
-              <img src="/images/diesel_fleet_1783050838517.png" alt="Fleet" />
+              <img src="./images/diesel_fleet_1783050838517.png" alt="Fleet" />
               <div className="hero__float-overlay hero__float-overlay--dark">
                 <span>Fleet Driver Details</span>
               </div>
@@ -224,8 +224,8 @@ export default function Home() {
           {/* Section 1: Station Finder */}
           <div className="product-card">
             <div className="product-card__visual">
-              <img src="/images/petrol_station_1783050827829.png" alt="Station Finder" className="product-card__img product-card__img--main" />
-              <img src="/images/cng_pump_1783050817670.png" alt="CNG" className="product-card__img product-card__img--float" />
+              <img src="./images/petrol_station_1783050827829.png" alt="Station Finder" className="product-card__img product-card__img--main" />
+              <img src="./images/cng_pump_1783050817670.png" alt="CNG" className="product-card__img product-card__img--float" />
             </div>
             <div className="product-card__content">
               <span className="product-card__tag">STATION FINDER</span>
@@ -242,7 +242,7 @@ export default function Home() {
           {/* Section 2: Route Planner */}
           <div className="product-card product-card--reverse">
             <div className="product-card__visual">
-              <img src="/images/route_planning.png" alt="Route Planner" className="product-card__img product-card__img--main" />
+              <img src="./images/route_planning.png" alt="Route Planner" className="product-card__img product-card__img--main" />
             </div>
             <div className="product-card__content">
               <span className="product-card__tag">FUEL-INDIA APP</span>
@@ -262,7 +262,7 @@ export default function Home() {
           {/* Section 3: Developer Tools / API */}
           <div className="product-card">
             <div className="product-card__visual">
-              <img src="/images/queue_prediction.png" alt="Queue Predictor" className="product-card__img product-card__img--main" />
+              <img src="./images/queue_prediction.png" alt="Queue Predictor" className="product-card__img product-card__img--main" />
             </div>
             <div className="product-card__content">
               <span className="product-card__tag">DEVELOPER TOOLS</span>
