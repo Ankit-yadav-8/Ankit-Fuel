@@ -221,21 +221,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── Stats Bar ─── */}
-      <section className="stats-bar">
-        <div className="container">
-          <div className="stats-bar__grid">
-            {stats.map((stat) => (
-              <div key={stat.label} className="stats-bar__item">
-                <div className="stats-bar__value">
-                  <AnimatedCounter target={stat.value} suffix={stat.suffix} />
-                </div>
-                <div className="stats-bar__label">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* ─── Product Sections (ionage card style) ─── */}
       <section className="section">
