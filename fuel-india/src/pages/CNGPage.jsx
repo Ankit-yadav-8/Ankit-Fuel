@@ -1,4 +1,4 @@
-import React from 'react';
+ï»¿import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function CNGPage() {
@@ -14,7 +14,7 @@ export default function CNGPage() {
                 The hardest fuel to find, finally easy.
               </h1>
               <p className="hero-premium__subtitle">
-                CNG stations are sparse and often crowded — and running out mid-city with no station in sight is genuinely stressful. Waypoint shows the nearest working CNG stations, live queue times, and a running-low quick-find for the moments that count.
+                CNG stations are sparse and often crowded â€” and running out mid-city with no station in sight is genuinely stressful. Waypoint shows the nearest working CNG stations, live queue times, and a running-low quick-find for the moments that count.
               </p>
               <div className="hero-premium__cta">
                 <Link to="/cng" className="btn btn--primary btn--lg">Find CNG near me</Link>
@@ -36,7 +36,7 @@ export default function CNGPage() {
                   </div>
                   <div className="widget-card__stats">
                     <div className="widget-card__val" style={{ color: '#F59E0B' }}>15 mins</div>
-                    <div className="widget-card__lbl">IGL Station • Sec 14</div>
+                    <div className="widget-card__lbl">IGL Station â€¢ Sec 14</div>
                   </div>
                   <div className="widget-card__meta">Updated by Ankit 1 min ago</div>
                 </div>
@@ -69,7 +69,7 @@ export default function CNGPage() {
             <div className="split-layout__content">
               <h2 className="section__title">Never sit in a CNG queue blind again.</h2>
               <p className="section__subtitle">
-                The CNG queue is the real cost — sometimes longer than the drive. Waypoint shows live, driver-reported wait times at CNG stations, so you pick the shortest line, not just the nearest one.
+                The CNG queue is the real cost â€” sometimes longer than the drive. Waypoint shows live, driver-reported wait times at CNG stations, so you pick the shortest line, not just the nearest one.
               </p>
               
               <ul className="info-list">
@@ -112,8 +112,8 @@ export default function CNGPage() {
                 </svg>
               </div>
               <h3>CNG on My Route</h3>
-              <p>With short range and sparse stations, CNG punishes bad planning hardest. Enter your route and Waypoint maps every CNG station along it — with queues and availability — so you always know where your next confirmed refill is.</p>
-              <Link to="/route-planner" className="link-arrow mt-4">Plan CNG on my route ?</Link>
+              <p>With short range and sparse stations, CNG punishes bad planning hardest. Enter your route and Waypoint maps every CNG station along it â€” with queues and availability â€” so you always know where your next confirmed refill is.</p>
+              <Link to="/route-planner" className="link-arrow mt-4">Plan CNG on my route â†’</Link>
             </div>
             
             <div className="feature-card">
@@ -125,8 +125,8 @@ export default function CNGPage() {
                 </svg>
               </div>
               <h3>Nearest CNG if Running Low</h3>
-              <p>When your CNG is nearly gone, one tap surfaces the closest confirmed working station with a reachable queue — filtering out anything unverified, closed, or too far — so a stressful moment becomes a short, sure drive.</p>
-              <Link to="/cng" className="link-arrow mt-4">I'm running low ?</Link>
+              <p>When your CNG is nearly gone, one tap surfaces the closest confirmed working station with a reachable queue â€” filtering out anything unverified, closed, or too far â€” so a stressful moment becomes a short, sure drive.</p>
+              <Link to="/cng" className="link-arrow mt-4">I'm running low â†’</Link>
             </div>
           </div>
         </div>

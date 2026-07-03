@@ -1,4 +1,4 @@
-import React from 'react';
+ï»¿import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function EVPage() {
@@ -14,7 +14,7 @@ export default function EVPage() {
                 Find chargers that actually work.
               </h1>
               <p className="hero-premium__subtitle">
-                The worst part of driving electric isn't range — it's arriving at a "charger" that's offline, occupied, or the wrong connector. Waypoint shows you live slot availability, connector type, and charging speed before you commit to the detour.
+                The worst part of driving electric isn't range â€” it's arriving at a "charger" that's offline, occupied, or the wrong connector. Waypoint shows you live slot availability, connector type, and charging speed before you commit to the detour.
               </p>
               <div className="hero-premium__cta">
                 <Link to="/route-planner" className="btn btn--primary btn--lg">Find EV charging near me</Link>
@@ -80,7 +80,7 @@ export default function EVPage() {
                 </svg>
               </div>
               <h3>Networks we cover</h3>
-              <p>A live directory of the charging networks mapped in your region — which brands operate near you, how many points each runs, their typical speeds, and how you pay at them.</p>
+              <p>A live directory of the charging networks mapped in your region â€” which brands operate near you, how many points each runs, their typical speeds, and how you pay at them.</p>
             </div>
             
             <div className="feature-card">
@@ -113,7 +113,7 @@ export default function EVPage() {
             <div className="split-layout__content">
               <h2 className="section__title">Never pull up to the wrong plug again.</h2>
               <p className="section__subtitle">
-                Type 2, CCS2, CHAdeMO, and Bharat AC/DC — India's EV charging still runs on a mix of connectors, and the wrong one means a wasted trip. Set yours once and Waypoint only shows chargers your car can use.
+                Type 2, CCS2, CHAdeMO, and Bharat AC/DC â€” India's EV charging still runs on a mix of connectors, and the wrong one means a wasted trip. Set yours once and Waypoint only shows chargers your car can use.
               </p>
               
               <ul className="info-list">
@@ -145,7 +145,7 @@ export default function EVPage() {
         <div className="container text-center">
           <h2 className="section__title text-white">Long drives, zero range anxiety.</h2>
           <p className="section__subtitle text-white opacity-80 max-w-2xl mx-auto">
-            EV road trips live and die on planning. Waypoint maps your entire route around your car's real range, places charging stops at the right intervals, and always keeps a confirmed-working fallback before any risky stretch — so you drive relaxed, not white-knuckled.
+            EV road trips live and die on planning. Waypoint maps your entire route around your car's real range, places charging stops at the right intervals, and always keeps a confirmed-working fallback before any risky stretch â€” so you drive relaxed, not white-knuckled.
           </p>
           <div className="stats-strip mt-8">
             <div className="stat-item">

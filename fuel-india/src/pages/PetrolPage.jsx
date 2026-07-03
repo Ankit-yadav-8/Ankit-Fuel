@@ -1,4 +1,4 @@
-import React from 'react';
+ï»¿import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function PetrolPage() {
@@ -14,7 +14,7 @@ export default function PetrolPage() {
                 The nearest open pump, not just the nearest pump.
               </h1>
               <p className="hero-premium__subtitle">
-                Waypoint finds petrol and diesel stations around you and filters for the ones that are actually open and stocked — with today's prices and any queue, so you fill up fast and fair.
+                Waypoint finds petrol and diesel stations around you and filters for the ones that are actually open and stocked â€” with today's prices and any queue, so you fill up fast and fair.
               </p>
               <div className="hero-premium__cta">
                 <Link to="/petrol" className="btn btn--primary btn--lg">Find petrol & diesel near me</Link>
@@ -35,8 +35,8 @@ export default function PetrolPage() {
                     <span className="widget-card__title">Today's Price</span>
                   </div>
                   <div className="widget-card__stats">
-                    <div className="widget-card__val">?102.50</div>
-                    <div className="widget-card__lbl">Petrol • IOCL</div>
+                    <div className="widget-card__val">â‚¹102.50</div>
+                    <div className="widget-card__lbl">Petrol â€¢ IOCL</div>
                   </div>
                   <div className="widget-card__meta">Confirmed 5 mins ago</div>
                 </div>
@@ -71,7 +71,7 @@ export default function PetrolPage() {
             <div className="split-layout__content">
               <h2 className="section__title">Your brand, your loyalty points, your call.</h2>
               <p className="section__subtitle">
-                Filter the map to IOCL, BPCL, HPCL, Reliance, Nayara, Shell, or independents — so every pump you see fits your loyalty program, fuel card, and quality preference.
+                Filter the map to IOCL, BPCL, HPCL, Reliance, Nayara, Shell, or independents â€” so every pump you see fits your loyalty program, fuel card, and quality preference.
               </p>
               
               <ul className="info-list">
@@ -111,7 +111,7 @@ export default function PetrolPage() {
                 </svg>
               </div>
               <h3>Today's Price Comparison</h3>
-              <p>Fuel prices move, and they vary pump to pump. Waypoint shows today's petrol and diesel prices across nearby stations side by side — so a full tank costs you less without a single extra stop.</p>
+              <p>Fuel prices move, and they vary pump to pump. Waypoint shows today's petrol and diesel prices across nearby stations side by side â€” so a full tank costs you less without a single extra stop.</p>
             </div>
             
             <div className="feature-card">
@@ -132,7 +132,7 @@ export default function PetrolPage() {
                 </svg>
               </div>
               <h3>Highway Pumps</h3>
-              <p>On the highway, the gaps between pumps are wide. Waypoint maps highway fuel stations along your route with live prices, stock, and amenities — so long drives and freight runs never come down to luck.</p>
+              <p>On the highway, the gaps between pumps are wide. Waypoint maps highway fuel stations along your route with live prices, stock, and amenities â€” so long drives and freight runs never come down to luck.</p>
             </div>
           </div>
         </div>
