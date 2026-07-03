@@ -167,15 +167,9 @@ export default function Home() {
 
             {/* Column 2 (Center) */}
             <div className="hero__collage-col hero__collage-col--2">
-              <div className="hero__card hero__card--wide" style={{ background: 'white', padding: '32px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                <div className="hero__widget hero__widget--mini" style={{ width: '100%', marginBottom: '24px' }}>
-                  <div className="hero__widget-avatar">UC</div>
-                  <div>
-                    <strong>Urban Company Pvt Ltd</strong>
-                    <span>10 Contracts</span>
-                  </div>
-                </div>
-                <h3 style={{ fontSize: '20px', fontWeight: '800', textAlign: 'center', lineHeight: '1.3' }}>Marketplace for connecting CPOs and Fleets</h3>
+              <div className="hero__card hero__card--wide" style={{ background: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <img src="./images/marketplace_nodes.png" alt="Marketplace Nodes" style={{ width: '100%', height: '70%', objectFit: 'contain', padding: '20px' }} />
+                <h3 style={{ fontSize: '18px', fontWeight: '800', textAlign: 'center', lineHeight: '1.3', padding: '0 20px 20px 20px' }}>Marketplace for connecting CPOs and Fleets</h3>
               </div>
               
               <div className="hero__card hero__card--square">
