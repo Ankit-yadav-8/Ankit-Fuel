@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/Ankit-Fuel/',
+  base: process.env.VERCEL ? '/' : '/Ankit-Fuel/',
   plugins: [react(), tailwindcss()],
   server: {
     proxy: {
