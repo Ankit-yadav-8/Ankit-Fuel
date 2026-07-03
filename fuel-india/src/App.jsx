@@ -39,7 +39,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/rewards" element={<Rewards />} />
-          <Route path="/route-planner" element={<Home />} />
+          <Route path="/route-planner" element={<RoutePlanner />} />
           <Route path="/queue-predictor" element={<CNGPage />} />
           <Route path="/privacy" element={<About />} />
           <Route path="/terms" element={<About />} />
