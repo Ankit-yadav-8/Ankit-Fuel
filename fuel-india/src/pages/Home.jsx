@@ -173,6 +173,7 @@ export default function Home() {
               </div>
               
               <div className="hero__card hero__card--square">
+                <img src="./images/map_graphic_1783055080446.png" alt="Route Map" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 <div className="hero__widget hero__widget--route" style={{ position: 'absolute', bottom: '20px', left: '50%', transform: 'translateX(-50%)', width: '90%' }}>
                   <div className="hero__widget-dots">
                     <span className="dot dot--start"></span><span className="line"></span>
