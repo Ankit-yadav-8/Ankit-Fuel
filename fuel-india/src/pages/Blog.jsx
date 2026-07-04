@@ -135,6 +135,20 @@ export default function Blog() {
           </div>
         </div>
       </section>
+
+      {/* Newsletter */}
+      <section className="section section--gray">
+        <div className="container">
+          <div className="newsletter">
+            <h2 className="newsletter__title">Fuel Prices Change Daily. Stay Ahead.</h2>
+            <p className="newsletter__desc">Get weekly price trends, EV infrastructure updates, and product news straight to your inbox. No spam, ever.</p>
+            <form className="newsletter__form" onSubmit={(e) => e.preventDefault()}>
+              <input type="email" className="newsletter__input" placeholder="you@example.com" required />
+              <button type="submit" className="newsletter__btn">Subscribe ↗</button>
+            </form>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

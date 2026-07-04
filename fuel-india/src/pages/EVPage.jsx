@@ -61,6 +61,30 @@ export default function EVPage() {
         </div>
       </section>
 
+      {/* Stats */}
+      <section className="stats-bar">
+        <div className="container">
+          <div className="stats-bar__grid">
+            <div className="stats-bar__item">
+              <div className="stats-bar__value">12,000+</div>
+              <div className="stats-bar__label">Public Chargers Mapped</div>
+            </div>
+            <div className="stats-bar__item">
+              <div className="stats-bar__value">15+</div>
+              <div className="stats-bar__label">Charging Networks</div>
+            </div>
+            <div className="stats-bar__item">
+              <div className="stats-bar__value">240+</div>
+              <div className="stats-bar__label">Cities With DC Fast</div>
+            </div>
+            <div className="stats-bar__item">
+              <div className="stats-bar__value">Live</div>
+              <div className="stats-bar__label">Slot Availability</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Every Network Section */}
       <section className="section bg-light">
         <div className="container">

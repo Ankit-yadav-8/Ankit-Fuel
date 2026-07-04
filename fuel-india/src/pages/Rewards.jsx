@@ -23,6 +23,20 @@ const redeemOptions = [
   { title: 'Partner Restaurant Coupon', points: '150 pts', icon: '🍔' },
 ];
 
+const programStats = [
+  { label: 'Community Members', value: '38,400', unit: 'users' },
+  { label: 'Points Awarded', value: '2.1M', unit: 'points' },
+  { label: 'Vouchers Redeemed', value: '11,250', unit: 'vouchers' },
+];
+
+const leaderboard = [
+  { rank: 1, name: 'Vikram S. — Delhi', points: '4,820 pts' },
+  { rank: 2, name: 'Anita R. — Bangalore', points: '4,215 pts' },
+  { rank: 3, name: 'Mohammed F. — Mumbai', points: '3,980 pts' },
+  { rank: 4, name: 'Deepak K. — Pune', points: '3,410 pts' },
+  { rank: 5, name: 'Shruti M. — Hyderabad', points: '3,150 pts' },
+];
+
 export default function Rewards() {
   return (
     <div className="page">
@@ -43,6 +57,14 @@ export default function Rewards() {
       {/* Earn Points */}
       <section className="section">
         <div className="container">
+          <div className="rewards-stats">
+            {programStats.map((s) => (
+              <div key={s.label} className="stat-card">
+                <h3>{s.label}</h3>
+                <div className="stat-card__value">{s.value} <span>{s.unit}</span></div>
+              </div>
+            ))}
+          </div>
           <div className="section__header">
             <span className="section__tag">Earn</span>
             <h2 className="section__title">How to Earn Points</h2>
@@ -100,7 +122,39 @@ export default function Rewards() {
         </div>
       </section>
 
+      {/* Leaderboard */}
+      <section className="section section--gray">
+        <div className="container">
+          <div className="section__header">
+            <span className="section__tag">Leaderboard</span>
+            <h2 className="section__title">This Month's Top Contributors</h2>
+            <p className="section__subtitle">The drivers keeping India's fuel data fresh — one queue report at a time.</p>
+          </div>
+          <div className="leaderboard">
+            {leaderboard.map((u) => (
+              <div key={u.rank} className="leaderboard-item">
+                <span className="leaderboard-item__rank">#{u.rank}</span>
+                <span className="leaderboard-item__name">{u.name}</span>
+                <span className="leaderboard-item__points">{u.points}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
+      {/* CTA */}
+      <section className="cta-section">
+        <div className="container">
+          <div className="cta-card">
+            <h2 className="cta-card__title">Start Earning From Your Next Refuel</h2>
+            <p className="cta-card__desc">Sign up today and grab your 50-point welcome bonus instantly.</p>
+            <div className="cta-card__actions">
+              <Link to="/route-planner" className="btn btn--white btn--lg">Get Started Free</Link>
+              <Link to="/contact" className="btn btn--outline btn--ghost btn--lg">Partner With Us</Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

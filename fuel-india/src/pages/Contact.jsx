@@ -48,6 +48,28 @@ export default function Contact() {
         </div>
       </section>
 
+      <section className="section" style={{ paddingBottom: 0 }}>
+        <div className="container">
+          <div className="features-grid">
+            <div className="feature-card">
+              <span className="feature-card__icon">📧</span>
+              <h3>Email Us</h3>
+              <p>hello@fuel-india.in<br />We reply within 24 hours on business days.</p>
+            </div>
+            <div className="feature-card">
+              <span className="feature-card__icon">📞</span>
+              <h3>Call Us</h3>
+              <p>+91 11-4567-8900<br />Mon–Sat, 9:00 AM to 7:00 PM IST.</p>
+            </div>
+            <div className="feature-card">
+              <span className="feature-card__icon">💬</span>
+              <h3>In-App Support</h3>
+              <p>Fastest for station issues — report directly from any station page in the app.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section">
         <div className="container">
           <div className="contact-grid">

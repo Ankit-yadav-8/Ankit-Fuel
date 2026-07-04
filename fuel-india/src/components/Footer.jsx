@@ -52,8 +52,14 @@ export default function Footer() {
                 <img src="./images/logo.png" alt="Fuel-India" className="footer__logo-img" />
                 <span className="footer__logo-text" style={{ color: '#111827' }}>Fuel-India</span>
               </Link>
-              
 
+              <p className="footer__tagline">
+                India's unified fuel navigation platform — find petrol, diesel, CNG and EV charging with live prices, AI queue prediction, and smart route planning.
+              </p>
+              <p className="footer__tagline" style={{ marginBottom: 0 }}>
+                📞 +91 11-4567-8900<br />
+                ✉️ hello@fuel-india.in
+              </p>
 
               <div className="footer__socials" style={{ marginTop: '32px' }}>
                 <a href="#" className="footer__social" aria-label="Twitter">

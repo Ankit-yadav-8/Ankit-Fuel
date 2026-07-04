@@ -3,10 +3,17 @@ import { Link, useLocation } from 'react-router-dom';
 
 const navLinks = [
   { label: 'Home', path: '/' },
-  { label: 'Find Stations', path: '/petrol' },
   { label: 'EV', path: '/ev' },
   { label: 'Petrol & Diesel', path: '/petrol' },
   { label: 'CNG', path: '/cng' },
+  { label: 'Rewards', path: '/rewards' },
+  { label: 'About', path: '/about' },
+];
+
+const mobileExtraLinks = [
+  { label: 'Fleet & Diesel', path: '/diesel' },
+  { label: 'Blog', path: '/blog' },
+  { label: 'Contact', path: '/contact' },
 ];
 
 export default function Navbar() {
@@ -72,7 +79,7 @@ export default function Navbar() {
         <div className="mobile-menu">
           <div className="mobile-menu__overlay" onClick={() => setMobileOpen(false)} />
           <div className="mobile-menu__panel">
-            {navLinks.map((link) => (
+            {[...navLinks, ...mobileExtraLinks].map((link) => (
               <div key={link.label} className="mobile-menu__group">
                 <Link to={link.path} className="mobile-menu__title">{link.label}</Link>
               </div>

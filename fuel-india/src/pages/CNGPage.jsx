@@ -62,6 +62,30 @@ export default function CNGPage() {
         </div>
       </section>
 
+      {/* Stats */}
+      <section className="stats-bar">
+        <div className="container">
+          <div className="stats-bar__grid">
+            <div className="stats-bar__item">
+              <div className="stats-bar__value">4,500+</div>
+              <div className="stats-bar__label">CNG Stations Mapped</div>
+            </div>
+            <div className="stats-bar__item">
+              <div className="stats-bar__value">18 min</div>
+              <div className="stats-bar__label">Avg. Queue Time Saved</div>
+            </div>
+            <div className="stats-bar__item">
+              <div className="stats-bar__value">120+</div>
+              <div className="stats-bar__label">Cities With CNG</div>
+            </div>
+            <div className="stats-bar__item">
+              <div className="stats-bar__value">Live</div>
+              <div className="stats-bar__label">Queue Reports</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Queue Section */}
       <section className="section bg-light">
         <div className="container">
@@ -104,7 +128,7 @@ export default function CNGPage() {
             <p className="section__subtitle">Routing and emergency features designed specifically for CNG's unique challenges.</p>
           </div>
           
-          <div className="features-grid" style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
+          <div className="features-grid features-grid--2col">
             <div className="feature-card">
               <div className="feature-card__icon feature-card__icon--cyan">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -129,6 +153,17 @@ export default function CNGPage() {
               <Link to="/cng" className="link-arrow mt-4">I'm running low →</Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section bg-dark text-white">
+        <div className="container text-center">
+          <h2 className="section__title text-white">Your Next CNG Fill, Without the Guesswork.</h2>
+          <p className="section__subtitle text-white opacity-80 max-w-2xl mx-auto">
+            Live queues, verified working stations, and route-aware planning — built for the fuel that punishes bad planning the hardest.
+          </p>
+          <Link to="/route-planner" className="btn btn--lg mt-8" style={{ background: 'white', color: '#111827' }}>Find CNG On My Route</Link>
         </div>
       </section>
     </div>

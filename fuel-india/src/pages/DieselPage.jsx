@@ -124,6 +124,20 @@ export default function DieselPage() {
           </div>
         </div>
       </section>
+
+      {/* CTA */}
+      <section className="cta-section">
+        <div className="container">
+          <div className="cta-card">
+            <h2 className="cta-card__title">Cut Your Fleet's Fuel Costs This Quarter</h2>
+            <p className="cta-card__desc">Book a 30-minute demo and see how much your routes could save with optimized diesel stops.</p>
+            <div className="cta-card__actions">
+              <Link to="/contact" className="btn btn--white btn--lg">Book a Fleet Demo</Link>
+              <Link to="/route-planner" className="btn btn--outline btn--ghost btn--lg">Try the Route Planner</Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

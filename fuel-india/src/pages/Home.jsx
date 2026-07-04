@@ -42,6 +42,32 @@ const testimonials = [
   },
 ];
 
+const partners = [
+  'IndianOil', 'BPCL', 'HPCL', 'Shell', 'Nayara Energy', 'Tata Power',
+  'Statiq', 'ChargeZone', 'Ather Grid', 'Jio-bp', 'Adani Total Gas', 'IGL',
+];
+
+const steps = [
+  {
+    num: '1',
+    icon: '📍',
+    title: 'Set Your Fuel & Location',
+    desc: 'Choose petrol, diesel, CNG or EV charging and let Fuel-India find every station around you or along your route.',
+  },
+  {
+    num: '2',
+    icon: '🤖',
+    title: 'Compare With Live Data',
+    desc: 'See real-time prices, AI queue predictions, stock reports and charger slot availability — verified by the community.',
+  },
+  {
+    num: '3',
+    icon: '⛽',
+    title: 'Refuel & Earn Rewards',
+    desc: 'Navigate to the best stop, skip the wait, and earn reward points for every queue report and review you share back.',
+  },
+];
+
 const blogPosts = [
   {
     date: 'June 28, 2026',
@@ -203,7 +229,33 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── Stats Bar ─── */}
+      <section className="stats-bar">
+        <div className="container">
+          <div className="stats-bar__grid">
+            {stats.map((stat) => (
+              <div key={stat.label} className="stats-bar__item">
+                <div className="stats-bar__value">
+                  <AnimatedCounter target={stat.value} suffix={stat.suffix} />
+                </div>
+                <div className="stats-bar__label">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
+      {/* ─── Trusted Networks Marquee ─── */}
+      <section className="marquee-section">
+        <p className="marquee-label">Covering every major fuel & charging network in India</p>
+        <div className="marquee">
+          <div className="marquee__track">
+            {[...partners, ...partners].map((p, i) => (
+              <span key={i} className="marquee__item">{p}</span>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ─── Product Sections (ionage card style) ─── */}
       <section className="section">
@@ -268,6 +320,27 @@ export default function Home() {
                 <p>Enables businesses to add fuel station discovery to their apps, enhancing engagement and brand value.</p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── How It Works ─── */}
+      <section className="section">
+        <div className="container">
+          <div className="section__header">
+            <span className="section__tag">How It Works</span>
+            <h2 className="section__title">Smarter Refueling in Three Steps</h2>
+            <p className="section__subtitle">From "where's the nearest pump?" to "refueled and back on the road" — in minutes, not guesswork.</p>
+          </div>
+          <div className="steps-grid">
+            {steps.map((step) => (
+              <div key={step.num} className="step-card">
+                <span className="step-card__num">{step.num}</span>
+                <span className="step-card__icon">{step.icon}</span>
+                <h4 className="step-card__title">{step.title}</h4>
+                <p className="step-card__desc">{step.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -353,7 +426,19 @@ export default function Home() {
         </div>
       </section>
 
-
+      {/* ─── Final CTA ─── */}
+      <section className="cta-section">
+        <div className="container">
+          <div className="cta-card">
+            <h2 className="cta-card__title">Ready to Never Wait at a Pump Again?</h2>
+            <p className="cta-card__desc">Join 50,000+ drivers already saving time and money with smart, AI-powered fuel navigation.</p>
+            <div className="cta-card__actions">
+              <Link to="/route-planner" className="btn btn--white btn--lg">Plan Your First Route</Link>
+              <Link to="/contact" className="btn btn--outline btn--ghost btn--lg">Talk to Us</Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

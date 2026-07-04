@@ -19,10 +19,47 @@ function ScrollToTop() {
   return null;
 }
 
+// Adds a fade-up reveal animation to common blocks as they scroll into view.
+const REVEAL_SELECTOR = [
+  '.section__header', '.product-card', '.solution-card', '.feature-card',
+  '.blog-card', '.blog-featured', '.mission-card', '.value-card', '.team-card',
+  '.timeline-item', '.office-card', '.faq-item', '.reward-earn-card',
+  '.tier-card', '.redeem-card', '.impact-card', '.stat-card', '.step-card',
+  '.split-layout', '.testimonial-ionage', '.price-card', '.newsletter',
+  '.cta-card', '.stats-bar__item', '.leaderboard', '.contact-form-wrap',
+].join(', ');
+
+function RevealOnScroll() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal--visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    let staggerIndex = 0;
+    document.querySelectorAll(REVEAL_SELECTOR).forEach((el) => {
+      if (el.classList.contains('reveal--visible')) return;
+      el.classList.add('reveal');
+      el.style.transitionDelay = `${(staggerIndex % 4) * 80}ms`;
+      staggerIndex += 1;
+      observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, [pathname]);
+  return null;
+}
+
 function App() {
   return (
     <Router>
       <ScrollToTop />
+      <RevealOnScroll />
       <Navbar />
       <main>
         <Routes>

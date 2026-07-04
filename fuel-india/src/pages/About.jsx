@@ -16,6 +16,13 @@ const timeline = [
   { year: '2027', title: 'Mobile App & Partnerships', desc: 'Flutter app launch. Partnerships with IOCL, BPCL, Tata Power.' },
 ];
 
+const aboutStats = [
+  { value: '12,000+', label: 'Stations Listed' },
+  { value: '500+', label: 'Cities Covered' },
+  { value: '50,000+', label: 'Active Users' },
+  { value: '98%', label: 'Data Accuracy' },
+];
+
 const values = [
   { icon: '🎯', title: 'Accuracy First', desc: 'Every data point is verified. Community reports are cross-checked with AI for reliability.' },
   { icon: '🌱', title: 'Sustainability', desc: 'We promote cleaner fuel choices and help EV adoption by making charging accessible.' },
@@ -39,6 +46,20 @@ export default function About() {
             <div className="page-hero__image">
               <img src="./images/route_planning.png" alt="About Fuel India" />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="stats-bar">
+        <div className="container">
+          <div className="stats-bar__grid">
+            {aboutStats.map((s) => (
+              <div key={s.label} className="stats-bar__item">
+                <div className="stats-bar__value">{s.value}</div>
+                <div className="stats-bar__label">{s.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -90,13 +111,13 @@ export default function About() {
             <h2 className="section__title">Our Journey So Far</h2>
           </div>
           <div className="timeline">
-            {timeline.map((t, i) => (
-              <div key={t.year} className={`timeline__item ${i % 2 === 0 ? '' : 'timeline__item--right'}`}>
-                <div className="timeline__dot" />
-                <div className="timeline__card">
-                  <span className="timeline__year">{t.year}</span>
-                  <h4 className="timeline__title">{t.title}</h4>
-                  <p className="timeline__desc">{t.desc}</p>
+            {timeline.map((t) => (
+              <div key={t.year} className="timeline-item">
+                <div className="timeline-item__dot" />
+                <div className="timeline-item__content">
+                  <span className="timeline-item__year">{t.year}</span>
+                  <h3>{t.title}</h3>
+                  <p>{t.desc}</p>
                 </div>
               </div>
             ))}
@@ -115,11 +136,27 @@ export default function About() {
             {team.map((t) => (
               <div key={t.name} className="team-card">
                 <div className="team-card__avatar">{t.avatar}</div>
-                <h4 className="team-card__name">{t.name}</h4>
-                <span className="team-card__role">{t.role}</span>
-                <p className="team-card__bio">{t.bio}</p>
+                <div className="team-card__info">
+                  <h3>{t.name}</h3>
+                  <div className="team-card__role">{t.role}</div>
+                  <p className="team-card__bio">{t.bio}</p>
+                </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="cta-section">
+        <div className="container">
+          <div className="cta-card">
+            <h2 className="cta-card__title">Want to Build This With Us?</h2>
+            <p className="cta-card__desc">We're hiring engineers, data scientists, and city launchers across India.</p>
+            <div className="cta-card__actions">
+              <Link to="/contact" className="btn btn--white btn--lg">View Open Roles</Link>
+              <Link to="/blog" className="btn btn--outline btn--ghost btn--lg">Read Our Blog</Link>
+            </div>
           </div>
         </div>
       </section>

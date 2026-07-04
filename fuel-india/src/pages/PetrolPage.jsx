@@ -1,6 +1,24 @@
 ﻿import React from 'react';
 import { Link } from 'react-router-dom';
 
+const cityPrices = [
+  { city: 'Delhi', petrol: '₹94.77', diesel: '₹87.67' },
+  { city: 'Mumbai', petrol: '₹103.50', diesel: '₹90.03' },
+  { city: 'Bangalore', petrol: '₹99.84', diesel: '₹85.93' },
+  { city: 'Chennai', petrol: '₹100.90', diesel: '₹92.48' },
+  { city: 'Kolkata', petrol: '₹105.01', diesel: '₹91.82' },
+  { city: 'Hyderabad', petrol: '₹107.46', diesel: '₹95.70' },
+  { city: 'Pune', petrol: '₹104.04', diesel: '₹90.57' },
+  { city: 'Ahmedabad', petrol: '₹94.49', diesel: '₹90.17' },
+];
+
+const petrolStats = [
+  { value: '78,000+', label: 'Petrol & Diesel Pumps' },
+  { value: '6', label: 'Major Brands Covered' },
+  { value: 'Daily', label: 'Price Updates' },
+  { value: '92%', label: 'Stock Report Accuracy' },
+];
+
 export default function PetrolPage() {
   return (
     <div className="page">
@@ -57,6 +75,40 @@ export default function PetrolPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="stats-bar">
+        <div className="container">
+          <div className="stats-bar__grid">
+            {petrolStats.map((s) => (
+              <div key={s.label} className="stats-bar__item">
+                <div className="stats-bar__value">{s.value}</div>
+                <div className="stats-bar__label">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* City Prices */}
+      <section className="section">
+        <div className="container">
+          <div className="section__header">
+            <span className="section__tag">Today's Prices</span>
+            <h2 className="section__title">Fuel Prices Across Major Cities</h2>
+            <p className="section__subtitle">Indicative pump prices updated daily at 6 AM. Open the app for the exact price at every station near you.</p>
+          </div>
+          <div className="price-grid">
+            {cityPrices.map((c) => (
+              <div key={c.city} className="price-card">
+                <div className="price-card__city">📍 {c.city}</div>
+                <div className="price-card__row"><span>Petrol</span><strong>{c.petrol}/L</strong></div>
+                <div className="price-card__row"><span>Diesel</span><strong>{c.diesel}/L</strong></div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -135,6 +187,17 @@ export default function PetrolPage() {
               <p>On the highway, the gaps between pumps are wide. Waypoint maps highway fuel stations along your route with live prices, stock, and amenities — so long drives and freight runs never come down to luck.</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section bg-dark text-white">
+        <div className="container text-center">
+          <h2 className="section__title text-white">Stop Overpaying at the Pump.</h2>
+          <p className="section__subtitle text-white opacity-80 max-w-2xl mx-auto">
+            The price difference between two pumps on the same road can be real money over a year of commuting. Let Fuel-India route you to the better one, every time.
+          </p>
+          <Link to="/route-planner" className="btn btn--primary btn--lg mt-8" style={{ background: 'white', color: '#111827' }}>Find the Cheapest Pump Near Me</Link>
         </div>
       </section>
     </div>
